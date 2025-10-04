@@ -25,7 +25,7 @@ const news = [
 
 const NewsSection = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-gradient-to-b from-slate-950/20 via-background/60 to-slate-950/40">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">

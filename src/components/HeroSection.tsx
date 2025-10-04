@@ -5,15 +5,15 @@ import tempoSatellite from '@/assets/tempo-satellite.jpg';
 
 const HeroSection = () => {
   return (
-    <div className="relative min-h-[600px] md:min-h-[700px] overflow-hidden bg-gradient-to-br from-background via-background to-accent/20">
+    <div className="relative min-h-[600px] md:min-h-[700px] overflow-hidden bg-gradient-to-br from-slate-950/50 via-background/80 to-blue-950/30">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={tempoSatellite}
           alt="TEMPO Satellite"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-background/70 to-background/90" />
       </div>
 
       {/* Content */}
