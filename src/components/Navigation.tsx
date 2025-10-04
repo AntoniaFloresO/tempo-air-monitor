@@ -26,7 +26,7 @@ const Navigation = () => {
               <Satellite className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">AirSense</h1>
+              <h1 className="text-xl font-bold">Hackaton 2025 Nasa</h1>
               <p className="text-[10px] text-muted-foreground hidden sm:block">NASA TEMPO Mission</p>
             </div>
           </Link>
