@@ -12,6 +12,7 @@ const Navigation = () => {
     { name: 'About TEMPO', path: '/about' },
     { name: 'Data & Science', path: '/data' },
     { name: 'News', path: '/news' },
+    { name: 'Alertas', path: '/alerts' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
