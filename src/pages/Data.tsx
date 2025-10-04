@@ -105,12 +105,12 @@ const Data = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg hover:border-primary/50 transition-all"
+                  className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg hover:border-primary/50 transition-all flex flex-col"
                 >
                   <Icon className="w-10 h-10 text-primary mb-4" />
                   <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
                   <p className="text-muted-foreground mb-4">{product.description}</p>
-                  <div className="space-y-2 text-sm">
+                  <div className="space-y-2 text-sm mb-4">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Format:</span>
                       <span className="font-medium">{product.format}</span>
@@ -120,7 +120,7 @@ const Data = () => {
                       <span className="font-medium">{product.size}</span>
                     </div>
                   </div>
-                  <button className="w-full mt-4 bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                  <button className="w-full mt-auto bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
                     <Download className="w-4 h-4" />
                     Download Sample
                   </button>

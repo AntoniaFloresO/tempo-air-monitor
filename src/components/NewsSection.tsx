@@ -4,22 +4,25 @@ import { Link } from 'react-router-dom';
 
 const news = [
   {
-    date: 'Sep 7, 2024',
-    title: 'TEMPO Data Now Available for Public Use',
-    description: 'NASA releases comprehensive air quality dataset covering North America with hourly resolution.',
+    date: 'Aug 2023',
+    title: 'TEMPO\'s First Images Released',
+    description: 'NASA unveils the first stunning images from TEMPO, marking the beginning of revolutionary air quality monitoring over North America.',
+    tag: 'Milestone',
+    url: 'https://www.nasa.gov/image-article/tempos-first-images/',
+  },
+  {
+    date: 'Sep 2024',
+    title: 'TEMPO Data Now Available to Public',
+    description: 'Comprehensive air quality dataset from TEMPO is now accessible through NASA\'s GES DISC portal for research and applications.',
     tag: 'Data Release',
+    url: 'https://disc.gsfc.nasa.gov/information/news?title=TEMPO%20Data%20Now%20Available',
   },
   {
-    date: 'Aug 15, 2024',
-    title: 'Record Air Quality Improvements Detected',
-    description: 'TEMPO satellite reveals significant reductions in NO₂ levels across major metropolitan areas.',
+    date: 'Oct 2024',
+    title: 'Mapping Pollution Across North America',
+    description: 'TEMPO provides unprecedented hourly measurements of air pollutants, transforming our understanding of atmospheric dynamics.',
     tag: 'Research',
-  },
-  {
-    date: 'Jul 22, 2024',
-    title: 'New Partnership with EPA Announced',
-    description: 'Enhanced collaboration will provide real-time air quality alerts to millions of Americans.',
-    tag: 'Partnership',
+    url: 'https://www.nasa.gov/missions/tempo/nasas-tempo-maps-pollution-over-north-america/',
   },
 ];
 
@@ -49,13 +52,16 @@ const NewsSection = () => {
         {/* News Grid */}
         <div className="grid md:grid-cols-3 gap-6">
           {news.map((item, index) => (
-            <motion.article
+            <motion.a
               key={index}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group cursor-pointer"
+              className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group cursor-pointer block"
             >
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                 <Calendar className="w-4 h-4" />
@@ -72,7 +78,7 @@ const NewsSection = () => {
                 Read more
                 <ArrowRight className="w-4 h-4" />
               </div>
-            </motion.article>
+            </motion.a>
           ))}
         </div>
 

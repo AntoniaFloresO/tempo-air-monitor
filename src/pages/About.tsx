@@ -107,46 +107,116 @@ const About = () => {
       </section>
 
       {/* Mission Timeline */}
-      <section className="py-20 bg-accent/10">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gradient-to-b from-accent/10 via-background to-accent/5 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold mb-4">Mission Timeline</h2>
-            <p className="text-muted-foreground">From concept to continuous operations</p>
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-4">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-sm font-medium text-primary">Journey Through Time</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
+              Mission Timeline
+            </h2>
+            <p className="text-muted-foreground text-lg">From concept to continuous operations</p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border" />
+              {/* Enhanced Timeline Line with Gradient */}
+              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/50 via-primary to-primary/50 rounded-full md:ml-[-2px]" />
 
               {/* Timeline Items */}
               {timeline.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`relative flex items-center mb-12 ${
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, scale: 0.8 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    delay: index * 0.15,
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15
+                  }}
+                  className={`relative flex items-center mb-16 last:mb-0 ${
                     index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
                 >
-                  {/* Content */}
-                  <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} pl-16 md:pl-0`}>
-                    <div className="bg-card border border-border rounded-xl p-6">
-                      <span className="text-2xl font-bold text-primary">{item.year}</span>
-                      <h3 className="text-xl font-semibold mt-2 mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </div>
+                  {/* Content Card */}
+                  <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'} pl-20 md:pl-0`}>
+                    <motion.div
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="bg-card border border-border rounded-2xl p-8 shadow-lg hover:shadow-xl hover:border-primary/50 transition-all backdrop-blur-sm bg-card/80 group"
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <span className="text-4xl font-bold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">
+                          {item.year}
+                        </span>
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <Satellite className="w-6 h-6 text-primary" />
+                        </div>
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
+                      {/* Decorative line */}
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "100%" }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.15 + 0.3, duration: 0.6 }}
+                        className="h-1 bg-gradient-to-r from-primary/50 to-transparent rounded-full mt-4"
+                      />
+                    </motion.div>
                   </div>
 
-                  {/* Dot */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 -ml-2 bg-primary rounded-full border-4 border-background" />
+                  {/* Enhanced Dot with Animation */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      delay: index * 0.15 + 0.2,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                    className="absolute left-8 md:left-1/2 z-10"
+                  >
+                    <div className="relative w-6 h-6 -ml-3">
+                      {/* Pulsing ring */}
+                      <motion.div
+                        animate={{ 
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 0, 0.5]
+                        }}
+                        transition={{ 
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className="absolute inset-0 bg-primary/30 rounded-full"
+                      />
+                      {/* Main dot */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/70 rounded-full border-4 border-background shadow-lg shadow-primary/20" />
+                      {/* Inner glow */}
+                      <div className="absolute inset-[6px] bg-white/30 rounded-full" />
+                    </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
