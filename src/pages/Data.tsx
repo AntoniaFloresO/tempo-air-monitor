@@ -48,142 +48,158 @@ const Data = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-950">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={earthAtmosphere}
-            alt="Earth Atmosphere"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
-        </div>
-
-        <div className="container mx-auto px-4 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
-              <Database className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Data & Science</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Access High-Resolution Air Quality Data
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Download TEMPO satellite data, access our API, and explore comprehensive air quality datasets for research and applications.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Data Products */}
-      <section className="py-20 bg-accent/10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold mb-4">Available Data Products</h2>
-            <p className="text-muted-foreground">Hourly measurements covering North America</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {dataProducts.map((product, index) => {
-              const Icon = product.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg hover:border-primary/50 transition-all flex flex-col"
-                >
-                  <Icon className="w-10 h-10 text-primary mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
-                  <p className="text-muted-foreground mb-4">{product.description}</p>
-                  <div className="space-y-2 text-sm mb-4">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Format:</span>
-                      <span className="font-medium">{product.format}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Size:</span>
-                      <span className="font-medium">{product.size}</span>
-                    </div>
-                  </div>
-                  <button className="w-full mt-auto bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
-                    <Download className="w-4 h-4" />
-                    Download Sample
-                  </button>
-                </motion.div>
-              );
-            })}
+      {/* Hero Section with fade */}
+      <div className="relative">
+        <section className="pt-32 pb-20 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={earthAtmosphere}
+              alt="Earth Atmosphere"
+              className="w-full h-full object-cover opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-blue-950/60 to-slate-900/80" />
           </div>
-        </div>
-      </section>
 
-      {/* API Documentation */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="container mx-auto px-4 relative">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-4xl mx-auto text-center"
             >
-              <h2 className="text-4xl font-bold mb-6">Developer API</h2>
-              <p className="text-muted-foreground mb-6">
+              <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-400/30 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+                <Database className="w-4 h-4 text-cyan-400" />
+                <span className="text-sm font-medium text-cyan-300">Data & Science</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+                Access High-Resolution Air Quality Data
+              </h1>
+              <p className="text-xl text-white/90 font-light">
+                Download TEMPO satellite data, access our API, and explore comprehensive air quality datasets for research and applications.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+        {/* Fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-slate-900 pointer-events-none z-10" />
+      </div>
+
+      {/* Data Products with fade */}
+      <div className="relative">
+        {/* Fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-900 to-transparent pointer-events-none z-10" />
+        <section className="py-20 bg-slate-900/40">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Available Data Products
+              </h2>
+              <p className="text-white/90 font-light">Hourly measurements covering North America</p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {dataProducts.map((product, index) => {
+                const Icon = product.icon;
+                const colors = ['text-cyan-400', 'text-blue-400', 'text-purple-400'];
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-slate-900/50 border border-cyan-400/20 rounded-2xl p-6 hover:shadow-lg hover:shadow-cyan-500/10 hover:border-cyan-400/40 transition-all flex flex-col backdrop-blur-sm"
+                  >
+                    <Icon className={`w-10 h-10 ${colors[index]} mb-4`} />
+                    <h3 className="text-xl font-semibold mb-2 text-white">{product.title}</h3>
+                    <p className="text-white/70 mb-4">{product.description}</p>
+                    <div className="space-y-2 text-sm mb-4">
+                      <div className="flex justify-between">
+                        <span className="text-white/60">Format:</span>
+                        <span className="font-medium text-cyan-300">{product.format}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/60">Size:</span>
+                        <span className="font-medium text-cyan-300">{product.size}</span>
+                      </div>
+                    </div>
+                    <button className="w-full mt-auto bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-2 rounded-lg hover:from-cyan-400 hover:to-blue-400 transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
+                      <Download className="w-4 h-4" />
+                      Download Sample
+                    </button>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+        {/* Fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-slate-950 pointer-events-none z-10" />
+      </div>
+
+      {/* API Documentation with fade */}
+      <div className="relative">
+        {/* Fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-10" />
+        <section className="py-20 bg-slate-950/60">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold mb-6 text-white">Developer API</h2>
+              <p className="text-white/70 mb-6">
                 Integrate real-time air quality data into your applications with our RESTful API. Free for non-commercial use with rate limits.
               </p>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Code className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                    <Code className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">RESTful Endpoints</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="font-semibold mb-1 text-white">RESTful Endpoints</h3>
+                    <p className="text-sm text-white/70">
                       Simple HTTP requests with JSON responses
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <FileText className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Comprehensive Docs</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="font-semibold mb-1 text-white">Comprehensive Docs</h3>
+                    <p className="text-sm text-white/70">
                       Detailed API reference and code examples
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Database className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                    <Database className="w-5 h-5 text-purple-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Real-time Updates</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="font-semibold mb-1 text-white">Real-time Updates</h3>
+                    <p className="text-sm text-white/70">
                       Data refreshed hourly during daylight hours
                     </p>
                   </div>
                 </div>
               </div>
 
-              <button className="mt-8 bg-primary text-primary-foreground px-6 py-3 rounded-xl hover:bg-primary/90 transition-colors font-medium">
+              <button className="mt-8 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-xl hover:from-cyan-400 hover:to-blue-400 transition-all font-medium shadow-lg shadow-cyan-500/20">
                 Get API Key
               </button>
             </motion.div>
@@ -197,76 +213,89 @@ const Data = () => {
               {apiExamples.map((example, index) => (
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-xl p-4"
+                  className="bg-slate-900/50 border border-cyan-400/20 rounded-xl p-4 hover:border-cyan-400/40 transition-all backdrop-blur-sm"
                 >
-                  <h3 className="font-semibold mb-2">{example.title}</h3>
-                  <code className="block bg-accent/50 px-4 py-3 rounded-lg text-sm font-mono mb-2 overflow-x-auto">
+                  <h3 className="font-semibold mb-2 text-white">{example.title}</h3>
+                  <code className="block bg-slate-950/80 px-4 py-3 rounded-lg text-sm font-mono mb-2 overflow-x-auto text-cyan-300">
                     {example.code}
                   </code>
-                  <p className="text-sm text-muted-foreground">{example.description}</p>
+                  <p className="text-sm text-white/70">{example.description}</p>
                 </div>
               ))}
             </motion.div>
           </div>
         </div>
       </section>
+      {/* Fade to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-slate-950 pointer-events-none z-10" />
+    </div>
 
-      {/* Research Resources */}
-      <section className="py-20 bg-accent/10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-4xl font-bold mb-6 text-center">Research & Publications</h2>
-            <p className="text-muted-foreground text-center mb-12">
-              Explore peer-reviewed studies and technical documentation using TEMPO data
-            </p>
+      {/* Research Resources with fade */}
+      <div className="relative">
+        {/* Fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-10" />
+        <section className="py-20 bg-slate-900/40">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-4xl mx-auto"
+            >
+              <h2 className="text-4xl font-bold mb-6 text-center text-white">
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Research & Publications
+                </span>
+              </h2>
+              <p className="text-white/70 text-center mb-12">
+                Explore peer-reviewed studies and technical documentation using TEMPO data
+              </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: 'Algorithm Theoretical Basis Documents',
-                  description: 'Detailed technical specifications and retrieval algorithms',
-                  link: '#',
-                },
-                {
-                  title: 'Validation Reports',
-                  description: 'Data quality assessments and comparison studies',
-                  link: '#',
-                },
-                {
-                  title: 'User Guides',
-                  description: 'Step-by-step tutorials for data processing and analysis',
-                  link: '#',
-                },
-                {
-                  title: 'Published Papers',
-                  description: 'Scientific publications using TEMPO observations',
-                  link: '#',
-                },
-              ].map((resource, index) => (
-                <motion.a
-                  key={index}
-                  href={resource.link}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group"
-                >
-                  <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {resource.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{resource.description}</p>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  {
+                    title: 'Algorithm Theoretical Basis Documents',
+                    description: 'Detailed technical specifications and retrieval algorithms',
+                    link: '#',
+                  },
+                  {
+                    title: 'Validation Reports',
+                    description: 'Data quality assessments and comparison studies',
+                    link: '#',
+                  },
+                  {
+                    title: 'User Guides',
+                    description: 'Step-by-step tutorials for data processing and analysis',
+                    link: '#',
+                  },
+                  {
+                    title: 'Published Papers',
+                    description: 'Scientific publications using TEMPO observations',
+                    link: '#',
+                  },
+                ].map((resource, index) => (
+                  <motion.a
+                    key={index}
+                    href={resource.link}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-slate-900/50 border border-cyan-400/20 rounded-xl p-6 hover:shadow-lg hover:shadow-cyan-500/10 hover:border-cyan-400/40 transition-all group backdrop-blur-sm"
+                  >
+                    <h3 className="font-semibold mb-2 group-hover:text-cyan-400 transition-colors text-white">
+                      {resource.title}
+                    </h3>
+                    <p className="text-sm text-white/70">{resource.description}</p>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+        {/* Fade to footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-slate-950 pointer-events-none z-10" />
+      </div>
 
       <Footer />
     </div>

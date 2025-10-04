@@ -23,10 +23,10 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-400/30 rounded-full px-4 py-2 mb-6 backdrop-blur-sm"
           >
-            <Satellite className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">NASA TEMPO Mission</span>
+            <Satellite className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm font-medium text-cyan-300">NASA TEMPO Mission</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -34,11 +34,11 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white"
           >
             Unbounded air quality
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-primary/70">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
               monitoring from space
             </span>
           </motion.h1>
@@ -48,7 +48,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl"
+            className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl font-light"
           >
             Real-time air quality data from NASA's TEMPO satellite. Monitor pollution levels across North America with unprecedented spatial and temporal resolution.
           </motion.p>
@@ -62,14 +62,14 @@ const HeroSection = () => {
           >
             <a
               href="#monitor"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-xl font-medium hover:from-cyan-400 hover:to-blue-400 transition-all shadow-lg shadow-cyan-500/20"
             >
               Start Monitoring
               <ArrowRight className="w-5 h-5" />
             </a>
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 bg-card border border-border px-6 py-3 rounded-xl font-medium hover:bg-accent transition-colors"
+              className="inline-flex items-center gap-2 bg-slate-800/50 border border-cyan-400/30 text-cyan-100 px-6 py-3 rounded-xl font-medium hover:bg-slate-800/70 hover:border-cyan-400/50 transition-all backdrop-blur-sm"
             >
               Learn About TEMPO
             </Link>
@@ -83,25 +83,25 @@ const HeroSection = () => {
             className="grid grid-cols-3 gap-6 mt-16"
           >
             <div className="space-y-1">
-              <div className="flex items-center gap-2 text-primary">
+              <div className="flex items-center gap-2 text-cyan-400">
                 <Globe className="w-5 h-5" />
               </div>
-              <p className="text-2xl font-bold">North America</p>
-              <p className="text-sm text-muted-foreground">Coverage Area</p>
+              <p className="text-2xl font-bold text-white">North America</p>
+              <p className="text-sm text-white/70">Coverage Area</p>
             </div>
             <div className="space-y-1">
-              <div className="flex items-center gap-2 text-primary">
+              <div className="flex items-center gap-2 text-blue-400">
                 <Zap className="w-5 h-5" />
               </div>
-              <p className="text-2xl font-bold">Hourly</p>
-              <p className="text-sm text-muted-foreground">Data Updates</p>
+              <p className="text-2xl font-bold text-white">Hourly</p>
+              <p className="text-sm text-white/70">Data Updates</p>
             </div>
             <div className="space-y-1">
-              <div className="flex items-center gap-2 text-primary">
+              <div className="flex items-center gap-2 text-purple-400">
                 <Satellite className="w-5 h-5" />
               </div>
-              <p className="text-2xl font-bold">3 Pollutants</p>
-              <p className="text-sm text-muted-foreground">Monitored 24/7</p>
+              <p className="text-2xl font-bold text-white">3 Pollutants</p>
+              <p className="text-sm text-white/70">Monitored 24/7</p>
             </div>
           </motion.div>
         </div>
@@ -115,13 +115,13 @@ const HeroSection = () => {
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <div className="flex flex-col items-center gap-2">
-          <p className="text-sm text-muted-foreground">Scroll to explore</p>
+          <p className="text-sm text-cyan-300/70">Scroll to explore</p>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex items-start justify-center p-2"
+            className="w-6 h-10 border-2 border-cyan-400/30 rounded-full flex items-start justify-center p-2"
           >
-            <div className="w-1 h-2 bg-muted-foreground/50 rounded-full" />
+            <div className="w-1 h-2 bg-cyan-400/50 rounded-full" />
           </motion.div>
         </div>
       </motion.div>

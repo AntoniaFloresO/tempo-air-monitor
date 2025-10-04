@@ -59,7 +59,7 @@ const FeaturesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
           >
             Revolutionary Air Quality Monitoring
           </motion.h2>
@@ -68,7 +68,7 @@ const FeaturesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground"
+            className="text-lg text-blue-200/80"
           >
             TEMPO is the first space-based instrument to monitor air pollutants hourly during daytime across North America
           </motion.p>

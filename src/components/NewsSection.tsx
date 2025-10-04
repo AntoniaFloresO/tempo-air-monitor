@@ -36,13 +36,13 @@ const NewsSection = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold"
+            className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
           >
             Latest Updates
           </motion.h2>
           <Link
             to="/news"
-            className="hidden sm:inline-flex items-center gap-2 text-primary hover:gap-3 transition-all font-medium"
+            className="hidden sm:inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 hover:gap-3 transition-all font-medium"
           >
             View All News
             <ArrowRight className="w-5 h-5" />
@@ -61,20 +61,20 @@ const NewsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group cursor-pointer block"
+              className="bg-slate-900/40 border border-cyan-400/20 rounded-2xl p-6 hover:shadow-lg hover:shadow-cyan-500/10 hover:border-cyan-400/40 transition-all group cursor-pointer block backdrop-blur-sm"
             >
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+              <div className="flex items-center gap-2 text-sm text-blue-200/70 mb-3">
                 <Calendar className="w-4 h-4" />
                 <span>{item.date}</span>
               </div>
-              <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-3">
+              <div className="inline-block px-3 py-1 bg-cyan-500/10 text-cyan-300 text-xs font-medium rounded-full mb-3 border border-cyan-400/20">
                 {item.tag}
               </div>
-              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-cyan-300 transition-colors">
                 {item.title}
               </h3>
-              <p className="text-muted-foreground mb-4">{item.description}</p>
-              <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+              <p className="text-blue-200/70 mb-4">{item.description}</p>
+              <div className="flex items-center gap-2 text-cyan-400 font-medium group-hover:gap-3 transition-all">
                 Read more
                 <ArrowRight className="w-4 h-4" />
               </div>
@@ -85,7 +85,7 @@ const NewsSection = () => {
         {/* Mobile View All Link */}
         <Link
           to="/news"
-          className="sm:hidden flex items-center justify-center gap-2 text-primary hover:gap-3 transition-all font-medium mt-8"
+          className="sm:hidden flex items-center justify-center gap-2 text-cyan-400 hover:text-cyan-300 hover:gap-3 transition-all font-medium mt-8"
         >
           View All News
           <ArrowRight className="w-5 h-5" />
