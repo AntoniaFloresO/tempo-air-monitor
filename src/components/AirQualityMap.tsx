@@ -68,8 +68,11 @@ const AirQualityMap = ({ selectedPollutant, onLocationSelect }: AirQualityMapPro
 
     map.current.on('load', () => {
       setMapLoaded(true);
-      // Auto-trigger geolocation
-      setTimeout(() => geolocate.trigger(), 1000);
+    });
+
+    // Ensure style is fully loaded before allowing source additions
+    map.current.on('style.load', () => {
+      setMapLoaded(true);
     });
 
     // Click event for location selection
@@ -77,6 +80,11 @@ const AirQualityMap = ({ selectedPollutant, onLocationSelect }: AirQualityMapPro
       if (onLocationSelect) {
         onLocationSelect([e.lngLat.lng, e.lngLat.lat]);
       }
+    });
+
+    // Auto-trigger geolocation after map is ready
+    map.current.once('idle', () => {
+      setTimeout(() => geolocate.trigger(), 500);
     });
 
     // Cleanup
@@ -89,6 +97,12 @@ const AirQualityMap = ({ selectedPollutant, onLocationSelect }: AirQualityMapPro
   // Add pollutant visualization layer
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
+
+    // Double-check that style is loaded before proceeding
+    if (!map.current.isStyleLoaded()) {
+      console.log('Style not loaded yet, waiting...');
+      return;
+    }
 
     // Remove existing pollutant layer if any
     if (map.current.getLayer('pollutant-heatmap')) {
