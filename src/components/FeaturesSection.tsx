@@ -93,14 +93,12 @@ const FeaturesSection = () => {
                   className="flex-shrink-0 snap-center"
                   style={{ width: '380px' }}
                 >
-                  <motion.div
-                    animate={{
-                      scale: isHovered ? 1.05 : isDimmed ? 0.95 : 1,
-                      y: isHovered ? -10 : 0,
-                    }}
-                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                  <div
+                    className={`transition-all duration-300 ${
+                      isHovered ? 'scale-105 -translate-y-2' : isDimmed ? 'scale-95' : 'scale-100'
+                    }`}
                   >
-                    <Card className={`overflow-hidden transition-all duration-400 border-0 h-[500px] ${
+                    <Card className={`overflow-hidden transition-all duration-300 border-0 h-[500px] ${
                       isHovered 
                         ? 'shadow-2xl ring-2 ring-primary/20' 
                         : 'shadow-lg'
@@ -108,17 +106,14 @@ const FeaturesSection = () => {
                       <CardContent className="p-0 h-full">
                         <div className="relative h-full">
                           {/* Image Section - Full Height */}
-                          <motion.div 
-                            className="absolute inset-0"
-                            animate={{
-                              filter: isDimmed ? 'grayscale(100%) brightness(0.6)' : 'grayscale(0%) brightness(1)',
-                            }}
-                            transition={{ duration: 0.4 }}
+                          <div 
+                            className={`absolute inset-0 transition-all duration-300 ${
+                              isDimmed ? 'grayscale brightness-60' : ''
+                            }`}
                           >
-                            <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient}`}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} transition-opacity duration-300`}
                               style={{ 
                                 opacity: isHovered ? 0.75 : isDimmed ? 0.25 : 0.55,
-                                transition: 'opacity 0.4s ease'
                               }}
                             />
                             <img 
@@ -126,60 +121,50 @@ const FeaturesSection = () => {
                               alt={feature.title}
                               className="w-full h-full object-cover"
                             />
-                          </motion.div>
+                          </div>
                           
                           {/* Content Overlay */}
                           <div className="absolute inset-0 flex flex-col justify-between p-8 z-10">
                             {/* Top Section with State/Region */}
-                            <motion.div
-                              animate={{
-                                opacity: isHovered ? 1 : isDimmed ? 0.3 : 0.8,
-                              }}
-                              transition={{ duration: 0.4 }}
+                            <div
+                              className={`transition-opacity duration-300 ${
+                                isHovered ? 'opacity-100' : isDimmed ? 'opacity-30' : 'opacity-80'
+                              }`}
                             >
                               <p className="text-xs uppercase tracking-widest text-white/90 mb-2">
                                 TEMPO MISSION
                               </p>
-                            </motion.div>
+                            </div>
                             
                             {/* Bottom Section with Title and Description */}
                             <div>
-                              <motion.h3 
-                                className="text-4xl font-bold text-white mb-4 drop-shadow-2xl"
-                                animate={{
-                                  opacity: isHovered ? 1 : isDimmed ? 0.4 : 0.9,
-                                  y: isHovered ? -5 : 0,
-                                }}
-                                transition={{ duration: 0.4 }}
+                              <h3 
+                                className={`text-4xl font-bold text-white mb-4 drop-shadow-2xl transition-all duration-300 ${
+                                  isHovered ? 'opacity-100' : isDimmed ? 'opacity-40' : 'opacity-90'
+                                }`}
                               >
                                 {feature.title}
-                              </motion.h3>
+                              </h3>
                               
-                              <motion.div 
-                                className="h-0.5 bg-white/60 rounded-full mb-4"
-                                animate={{
-                                  width: isHovered ? 80 : 60,
-                                  opacity: isHovered ? 0.9 : isDimmed ? 0.3 : 0.6,
-                                }}
-                                transition={{ duration: 0.4 }}
+                              <div 
+                                className={`h-0.5 bg-white/60 rounded-full mb-4 transition-all duration-300 ${
+                                  isHovered ? 'w-20 opacity-90' : isDimmed ? 'w-12 opacity-30' : 'w-16 opacity-60'
+                                }`}
                               />
                               
-                              <motion.p 
-                                className="text-sm text-white/90 leading-relaxed"
-                                animate={{
-                                  opacity: isHovered ? 1 : 0,
-                                  y: isHovered ? 0 : 20,
-                                }}
-                                transition={{ duration: 0.4 }}
+                              <p 
+                                className={`text-sm text-white/90 leading-relaxed transition-all duration-300 ${
+                                  isHovered ? 'opacity-100' : 'opacity-0'
+                                }`}
                               >
                                 {feature.description}
-                              </motion.p>
+                              </p>
                             </div>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  </div>
                 </motion.div>
               );
             })}

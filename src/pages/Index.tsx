@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
@@ -14,42 +14,6 @@ import { calculateAQI, getRiskLevel, generateMockData } from '@/utils/air-qualit
 import { Menu, X } from 'lucide-react';
 
 const Index = () => {
-  const { scrollYProgress } = useScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.9, 0.8]);
-  
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    let rafId: number;
-    const handleMouseMove = (e: MouseEvent) => {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 10;
-        const y = (e.clientY / window.innerHeight - 0.5) * 10;
-        setMousePosition({ x, y });
-      });
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  // Memoize star positions to avoid recalculating on every render
-  const stars = useMemo(() => 
-    Array.from({ length: 30 }, (_, i) => ({
-      id: i,
-      width: Math.random() * 2,
-      height: Math.random() * 2,
-      top: Math.random() * 100,
-      left: Math.random() * 100,
-      duration: 2 + Math.random() * 3,
-      delay: Math.random() * 2,
-    })),
-  []);
   const [selectedPollutant, setSelectedPollutant] = useState<Pollutant>('no2');
   const [selectedCoords, setSelectedCoords] = useState<[number, number]>([-98.5795, 39.8283]);
   const [airQualityData, setAirQualityData] = useState<AirQualityData | null>(null);
@@ -79,132 +43,26 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 relative overflow-hidden">
-      {/* Enhanced Space Background with Earth and Station */}
+      {/* Simplified Space Background - Static for better performance */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {/* Deep Space Gradient */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950/70 to-slate-900"
-          style={{ opacity }}
-        >
-          {/* Optimized Stars Layer - Reduced from 80 to 30 */}
-          <motion.div
-            className="absolute inset-0"
-            style={{ 
-              y: y1,
-              x: mousePosition.x * 0.2,
-            }}
-          >
-            {stars.map((star) => (
-              <motion.div
-                key={star.id}
-                className="absolute bg-white rounded-full will-change-transform"
+        {/* Deep Space Gradient - Static */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950/70 to-slate-900">
+          {/* Static Stars Layer */}
+          <div className="absolute inset-0">
+            {[...Array(30)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full"
                 style={{
-                  width: `${star.width}px`,
-                  height: `${star.height}px`,
-                  top: `${star.top}%`,
-                  left: `${star.left}%`,
-                }}
-                animate={{
-                  opacity: [0.2, 0.8, 0.2],
-                }}
-                transition={{
-                  duration: star.duration,
-                  repeat: Infinity,
-                  delay: star.delay,
+                  width: `${Math.random() * 2}px`,
+                  height: `${Math.random() * 2}px`,
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  opacity: 0.3 + Math.random() * 0.5,
                 }}
               />
             ))}
-          </motion.div>
-
-          {/* Earth - Simplified */}
-          <motion.div
-            className="absolute will-change-transform"
-            style={{ 
-              bottom: '-50%',
-              right: '-20%',
-              width: '140%',
-              height: '140%',
-              y: y1,
-              x: mousePosition.x * -0.3,
-            }}
-          >
-            {/* Earth Atmospheric Glow */}
-            <div className="absolute inset-0 rounded-full bg-blue-400/20 blur-[120px]" />
-            
-            {/* Earth Main Body - Static gradient, no animation */}
-            <div 
-              className="absolute inset-0 rounded-full overflow-hidden shadow-2xl"
-              style={{
-                background: 'radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.5) 0%, rgba(29, 78, 216, 0.4) 35%, rgba(30, 58, 138, 0.3) 65%, rgba(15, 23, 42, 0.2) 85%, transparent 100%)',
-                boxShadow: 'inset -40px -40px 120px rgba(0, 0, 0, 0.5), inset 40px 40px 80px rgba(59, 130, 246, 0.2)'
-              }}
-            >
-              {/* Terminator Line (Day/Night) - Static */}
-              <div className="absolute inset-0" style={{
-                background: 'linear-gradient(135deg, transparent 45%, rgba(0, 0, 0, 0.6) 55%)'
-              }} />
-            </div>
-
-            {/* Atmosphere Rim Lighting */}
-            <div className="absolute inset-0 rounded-full" style={{
-              boxShadow: '0 0 60px rgba(59, 130, 246, 0.4), inset 0 0 80px rgba(59, 130, 246, 0.2)'
-            }} />
-          </motion.div>
-
-          {/* Simplified Satellite */}
-          <motion.div
-            className="absolute will-change-transform"
-            style={{
-              top: '30%',
-              left: '50%',
-              y: mousePosition.y * 0.8,
-              x: mousePosition.x * 0.8,
-            }}
-          >
-            <motion.div
-              animate={{
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 100,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            >
-              {/* Main Station Body */}
-              <div className="relative w-24 h-32 bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400 rounded-sm shadow-2xl">
-                {/* Solar Panel Left */}
-                <div className="absolute top-1/2 -left-16 -translate-y-1/2 w-16 h-40 bg-gradient-to-r from-blue-950/50 via-blue-500/70 to-blue-950/50 backdrop-blur-sm border border-blue-400/40 shadow-lg shadow-blue-500/30" 
-                  style={{
-                    clipPath: 'polygon(0 8%, 100% 0, 100% 100%, 0 92%)',
-                  }}
-                />
-                
-                {/* Solar Panel Right */}
-                <div className="absolute top-1/2 -right-16 -translate-y-1/2 w-16 h-40 bg-gradient-to-r from-blue-950/50 via-blue-500/70 to-blue-950/50 backdrop-blur-sm border border-blue-400/40 shadow-lg shadow-blue-500/30"
-                  style={{
-                    clipPath: 'polygon(0 0, 100% 8%, 100% 92%, 0 100%)',
-                  }}
-                />
-                
-                {/* Communication Array */}
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-1 h-10 bg-gradient-to-t from-slate-300 to-slate-400" />
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-red-400 to-red-600 rounded-full shadow-lg shadow-red-500/60">
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-red-400"
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.8, 0, 0.8],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          </div>
 
           {/* Atmospheric Light Effects - Static */}
           <div className="absolute inset-0">
@@ -212,13 +70,7 @@ const Index = () => {
             <div className="absolute bottom-[25%] right-[25%] w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[120px]" />
             <div className="absolute top-[50%] right-[15%] w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]" />
           </div>
-
-          {/* Technical Grid Overlay */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.5) 1px, transparent 1px)',
-            backgroundSize: '80px 80px'
-          }} />
-        </motion.div>
+        </div>
 
         {/* Gradient Overlay for Readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950/80" />
