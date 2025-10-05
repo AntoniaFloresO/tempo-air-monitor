@@ -46,12 +46,12 @@ All colors MUST be HSL.
     --aqi-hazardous: 270 91% 65%;
 
     /* Pollutant Colors */
-    --no2-primary: 25 95% 53%;
-    --no2-secondary: 38 92% 50%;
-    --o3-primary: 199 89% 48%;
-    --o3-secondary: 187 85% 53%;
-    --pm25-primary: 270 91% 65%;
-    --pm25-secondary: 280 87% 47%;
+    --no2-primary: 14 100% 57%;
+    --no2-secondary: 24 100% 50%;
+    --o3-primary: 200 98% 39%;
+    --o3-secondary: 195 100% 50%;
+    --pm25-primary: 271 81% 56%;
+    --pm25-secondary: 280 100% 65%;
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
