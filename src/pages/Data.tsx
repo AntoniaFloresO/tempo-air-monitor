@@ -260,27 +260,29 @@ const Data = () => {
                   {
                     title: 'Algorithm Theoretical Basis Documents',
                     description: 'Detailed technical specifications and retrieval algorithms',
-                    link: '#',
+                    link: 'https://tempo.si.edu/documents.html',
                   },
                   {
                     title: 'Validation Reports',
                     description: 'Data quality assessments and comparison studies',
-                    link: '#',
+                    link: 'https://www.sciencedirect.com/search?qs=TEMPO%20satellite%20validation',
                   },
                   {
                     title: 'User Guides',
                     description: 'Step-by-step tutorials for data processing and analysis',
-                    link: '#',
+                    link: 'https://tempo.si.edu/data_for_scientists.html',
                   },
                   {
                     title: 'Published Papers',
                     description: 'Scientific publications using TEMPO observations',
-                    link: '#',
+                    link: 'https://scholar.google.com/scholar?q=TEMPO+satellite+air+quality',
                   },
                 ].map((resource, index) => (
                   <motion.a
                     key={index}
                     href={resource.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

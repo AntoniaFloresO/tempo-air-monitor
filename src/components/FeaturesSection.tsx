@@ -13,7 +13,7 @@ const features = [
   {
     title: 'Pollution Tracking',
     description: 'Monitor NO₂, O₃, and PM2.5 levels across North America. Identify pollution sources and track their movement in real-time.',
-    image: 'https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=800&q=80', // Contaminación industrial
+    image: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&q=80', // Contaminación del aire - ciudad con smog
     gradient: 'from-orange-400/80 via-rose-400/70 to-pink-400/60',
     bgColor: 'bg-gradient-to-br from-orange-50 to-rose-50',
   },

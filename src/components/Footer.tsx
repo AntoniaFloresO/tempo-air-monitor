@@ -15,11 +15,11 @@ const Footer = () => {
                 <Satellite className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">AirSense</h3>
-                <p className="text-xs text-cyan-300/70">NASA TEMPO</p>
+                <h3 className="text-lg font-bold text-white/100">AirSense</h3>
+                <p className="text-xs text-cyan-300/100">NASA TEMPO</p>
               </div>
             </div>
-            <p className="text-sm text-blue-200/70">
+            <p className="text-sm text-white/100">
               Monitoring air quality from space for a healthier planet.
             </p>
           </div>
@@ -29,22 +29,22 @@ const Footer = () => {
             <h4 className="font-semibold mb-4 text-cyan-300">Explore</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <Link to="/" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   Live Monitor
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <Link to="/about" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   About TEMPO
                 </Link>
               </li>
               <li>
-                <Link to="/data" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <Link to="/data" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   Data & Science
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <Link to="/news" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   News & Updates
                 </Link>
               </li>
@@ -56,22 +56,22 @@ const Footer = () => {
             <h4 className="font-semibold mb-4 text-cyan-300">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <a href="https://tempo.si.edu/" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <a href="https://tempo.si.edu/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   TEMPO Mission
                 </a>
               </li>
               <li>
-                <a href="https://www.nasa.gov/" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <a href="https://www.nasa.gov/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   NASA
                 </a>
               </li>
               <li>
-                <a href="https://www.epa.gov/air-quality" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <a href="https://www.epa.gov/air-quality" target="_blank" rel="noopener noreferrer" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   EPA Air Quality
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+                <a href="#" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
                   API Documentation
                 </a>
               </li>
@@ -105,7 +105,7 @@ const Footer = () => {
                 <Mail className="w-5 h-5" />
               </a>
             </div>
-            <p className="text-sm text-blue-200/70">
+            <p className="text-sm text-white/100">
               Questions? Get in touch with our team.
             </p>
           </div>
@@ -113,14 +113,14 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-cyan-400/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-blue-200/70">
+          <p className="text-sm text-white/100">
             © {currentYear} AirSense. Powered by NASA TEMPO satellite data.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+            <a href="#" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-sm text-blue-200/70 hover:text-cyan-300 transition-colors">
+            <a href="#" className="text-sm text-white/100 hover:text-cyan-300 transition-colors">
               Terms of Service
             </a>
           </div>

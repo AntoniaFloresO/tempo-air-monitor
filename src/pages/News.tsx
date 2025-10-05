@@ -6,52 +6,52 @@ import { Calendar, Tag, ArrowRight } from 'lucide-react';
 const News = () => {
   const newsArticles = [
     {
-      date: 'Aug 2023',
-      tag: 'Milestone',
-      title: 'TEMPO\'s First Images Released',
-      excerpt: 'NASA unveils the first stunning images from TEMPO, marking the beginning of revolutionary air quality monitoring over North America.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop',
-      url: 'https://www.nasa.gov/image-article/tempos-first-images/',
-    },
-    {
-      date: 'Sep 2024',
+      date: 'Sept 2025',
       tag: 'Data Release',
-      title: 'TEMPO Data Now Available to Public',
-      excerpt: 'Comprehensive air quality dataset from TEMPO is now accessible through NASA\'s GES DISC portal for research and applications.',
-      image: 'https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=800&h=400&fit=crop',
-      url: 'https://disc.gsfc.nasa.gov/information/news?title=TEMPO%20Data%20Now%20Available',
+      title: 'TEMPO V04 & NRT V02 Product Release',
+      excerpt: "NASA's Atmospheric Science Data Center (ASDC) announces the release of TEMPO Standard Version 04 and Near Real-Time Version 02 products for Levels 1, 2, and 3, enhancing data accuracy and timeliness.",
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80', // Data visualization and analytics
+      url: 'https://asdc.larc.nasa.gov/project/TEMPO'
     },
     {
-      date: 'Oct 2024',
-      tag: 'Research',
-      title: 'NASA\'s TEMPO Maps Pollution Over North America',
-      excerpt: 'TEMPO provides unprecedented hourly measurements of air pollutants, transforming our understanding of atmospheric dynamics and pollution patterns.',
-      image: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&h=400&fit=crop',
-      url: 'https://www.nasa.gov/missions/tempo/nasas-tempo-maps-pollution-over-north-america/',
+      date: 'Jul 2025',
+      tag: 'Mission Update',
+      title: 'NASA Extends TEMPO Mission Through 2026',
+      excerpt: "Following the completion of its primary 20-month mission, NASA announces that TEMPO will continue operating through at least September 2026 to provide continuous air quality monitoring across North America.",
+      image: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&q=80', // Satellite in space
+      url: 'https://www.nasa.gov/missions/tempo/nasa-mission-monitoring-air-quality-from-space-extended/',
     },
     {
-      date: 'Oct 2023',
-      tag: 'Science',
-      title: 'TEMPO Measures Air Quality Across Continent',
-      excerpt: 'Earth Observatory showcases TEMPO\'s capability to measure air quality with unprecedented spatial and temporal resolution.',
-      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=400&fit=crop',
-      url: 'https://earthobservatory.nasa.gov/images/151888/tempo-measures-air-quality',
-    },
-    {
-      date: 'Jun 2024',
-      tag: 'Anniversary',
-      title: 'First Year of TEMPO Observations',
-      excerpt: 'Smithsonian Magazine highlights the groundbreaking achievements and discoveries from TEMPO\'s first year of operations.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop',
-      url: 'https://www.smithsonianmag.com/air-space-magazine/tempo/',
+      date: 'Jul 2025',
+      tag: 'Extension',
+      title: 'TEMPO Mission Extended to Track Pollution in Unprecedented Detail',
+      excerpt: 'NASA extends the TEMPO mission, allowing hourly pollution tracking at neighborhood scales, supporting studies on urban emissions, wildfires, and industrial sources.',
+      image: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&q=80', // Pollution/smog in city
+      url: 'https://www.azosensors.com/news.aspx?newsID=16548'
     },
     {
       date: 'May 2024',
-      tag: 'Data Portal',
-      title: 'Access TEMPO Data Through Multiple Portals',
-      excerpt: 'TEMPO data is now available through NASA\'s data portals, providing researchers worldwide access to revolutionary air quality measurements.',
-      image: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441?w=800&h=400&fit=crop',
-      url: 'https://www-air.larc.nasa.gov/missions/tempo/dataportal.html',
+      tag: 'Data Release',
+      title: 'New TEMPO Data Available at Neighborhood Scales',
+      excerpt: 'NASA makes new TEMPO data available at unprecedented spatial resolution, enabling scientists to assess air quality variations at neighborhood and city-block levels.',
+      image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80', // Aerial view of neighborhood/city
+      url: 'https://tempo.si.edu/'
+    },
+    {
+      date: 'Apr 2025',
+      tag: 'Science / Research',
+      title: 'Assimilating TEMPO NO₂ Observations into Atmospheric Models',
+      excerpt: "A new study demonstrates how TEMPO's nitrogen dioxide (NO₂) observations can be assimilated into JEDI-based atmospheric models to improve forecasts and understand nitrogen cycling.",
+      image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80', // Scientific research/atmospheric study
+      url: 'https://arxiv.org/abs/2506.07321'
+    },
+    {
+      date: 'Apr 2025',
+      tag: 'Science / Findings',
+      title: 'Free Tropospheric NO₂ Observed via TEMPO: Lightning Implications',
+      excerpt: 'Researchers use TEMPO to observe free-tropospheric NO₂ and explore its link to lightning-generated nitrogen emissions, offering new insights into upper-atmosphere chemistry.',
+      image: 'https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=800&q=80', // Lightning storm - alternative
+      url: 'https://arxiv.org/abs/2504.20337',
     },
   ];
 
@@ -143,17 +143,7 @@ const News = () => {
               ))}
             </div>
 
-            {/* Load More */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-center mt-12"
-            >
-              <button className="px-8 py-3 bg-slate-900/70 border border-cyan-400/30 text-cyan-300 rounded-xl hover:bg-cyan-500/10 hover:border-cyan-400/50 transition-all font-medium backdrop-blur-sm">
-                Load More Articles
-              </button>
-            </motion.div>
+            
           </div>
         </section>
       </div>

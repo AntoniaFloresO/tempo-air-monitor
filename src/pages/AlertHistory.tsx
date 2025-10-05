@@ -103,21 +103,50 @@ const AlertHistory = () => {
   const [selectedRange, setSelectedRange] = useState<string | null>(null);
 
   const aqiRanges = [
-    { label: '0-50 (Good)', min: 0, max: 50, color: 'bg-green-500/10 text-green-700 border-green-500/30 hover:bg-green-500/20' },
-    { label: '51-100 (Moderate)', min: 51, max: 100, color: 'bg-yellow-500/10 text-yellow-700 border-yellow-500/30 hover:bg-yellow-500/20' },
-    { label: '101-150 (Unhealthy for Sensitive)', min: 101, max: 150, color: 'bg-orange-500/10 text-orange-700 border-orange-500/30 hover:bg-orange-500/20' },
-    { label: '151-200 (Unhealthy)', min: 151, max: 200, color: 'bg-red-500/10 text-red-700 border-red-500/30 hover:bg-red-500/20' },
-    { label: '201-300 (Very Unhealthy)', min: 201, max: 300, color: 'bg-purple-500/10 text-purple-700 border-purple-500/30 hover:bg-purple-500/20' },
-    { label: '301-500 (Hazardous)', min: 301, max: 500, color: 'bg-purple-700/10 text-purple-900 border-purple-700/30 hover:bg-purple-700/20' },
+    { 
+      label: '0-100 (Good)', 
+      min: 0, 
+      max: 100, 
+      color: 'bg-green-500/30 text-green-300 border-green-400/50 hover:bg-green-500/40 hover:border-green-400/70',
+      selectedColor: 'bg-green-500/50 text-green-200 border-green-400/70 ring-2 ring-green-400/50'
+    },
+    { 
+      label: '100-200 (Moderate)', 
+      min: 100, 
+      max: 200, 
+      color: 'bg-yellow-500/30 text-yellow-300 border-yellow-400/50 hover:bg-yellow-500/40 hover:border-yellow-400/70',
+      selectedColor: 'bg-yellow-500/50 text-yellow-200 border-yellow-400/70 ring-2 ring-yellow-400/50'
+    },
+    { 
+      label: '200-300 (Unhealthy)', 
+      min: 200, 
+      max: 300, 
+      color: 'bg-orange-500/30 text-orange-300 border-orange-400/50 hover:bg-orange-500/40 hover:border-orange-400/70',
+      selectedColor: 'bg-orange-500/50 text-orange-200 border-orange-400/70 ring-2 ring-orange-400/50'
+    },
+    { 
+      label: '300-400 (Very Unhealthy)', 
+      min: 300, 
+      max: 400, 
+      color: 'bg-red-500/30 text-red-300 border-red-400/50 hover:bg-red-500/40 hover:border-red-400/70',
+      selectedColor: 'bg-red-500/50 text-red-200 border-red-400/70 ring-2 ring-red-400/50'
+    },
+    { 
+      label: '400-500 (Hazardous)', 
+      min: 400, 
+      max: 500, 
+      color: 'bg-red-700/30 text-red-200 border-red-600/50 hover:bg-red-700/40 hover:border-red-600/70',
+      selectedColor: 'bg-red-700/50 text-red-100 border-red-600/70 ring-2 ring-red-600/50'
+    },
   ];
 
   const getRiskColor = (level: RiskLevel) => {
     const colors = {
-      good: 'bg-green-500/10 text-green-700 border-green-500/20',
-      moderate: 'bg-yellow-500/10 text-yellow-700 border-yellow-500/20',
-      unhealthy: 'bg-orange-500/10 text-orange-700 border-orange-500/20',
-      'very-unhealthy': 'bg-red-500/10 text-red-700 border-red-500/20',
-      hazardous: 'bg-purple-500/10 text-purple-700 border-purple-500/20',
+      good: 'bg-green-500/20 text-green-300 border-green-400/40',
+      moderate: 'bg-yellow-500/20 text-yellow-300 border-yellow-400/40',
+      unhealthy: 'bg-orange-500/20 text-orange-300 border-orange-400/40',
+      'very-unhealthy': 'bg-red-500/20 text-red-300 border-red-400/40',
+      hazardous: 'bg-red-700/20 text-red-200 border-red-600/40',
     };
     return colors[level];
   };
@@ -134,11 +163,11 @@ const AlertHistory = () => {
   };
 
   const getAQIColor = (aqi: number) => {
-    if (aqi <= 50) return 'text-green-600';
-    if (aqi <= 100) return 'text-yellow-600';
-    if (aqi <= 150) return 'text-orange-600';
-    if (aqi <= 200) return 'text-red-600';
-    return 'text-purple-600';
+    if (aqi <= 100) return 'text-green-400';
+    if (aqi <= 200) return 'text-yellow-400';
+    if (aqi <= 300) return 'text-orange-400';
+    if (aqi <= 400) return 'text-red-400';
+    return 'text-red-300';
   };
 
   const filteredAlerts = mockAlerts.filter((alert) => {
@@ -242,7 +271,7 @@ const AlertHistory = () => {
                   Alert History
                 </span>
               </h1>
-              <p className="text-lg text-white/70 max-w-2xl">
+              <p className="text-lg text-white/100 max-w-2xl">
                 Complete tracking of all air quality alerts detected by TEMPO
               </p>
             </motion.div>
@@ -328,13 +357,13 @@ const AlertHistory = () => {
                     <Button 
                       variant={showFilters ? "default" : "outline"} 
                       size="sm" 
-                      className={showFilters ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400" : "border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/10"}
+                      className={showFilters ? "bg-cyan-500/30 text-cyan-200 hover:bg-cyan-500/40 border border-cyan-400/50" : "border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/10"}
                       onClick={() => setShowFilters(!showFilters)}
                     >
                       <Filter className="w-4 h-4" />
                       Filter AQI
                       {isFilterActive && (
-                        <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 flex items-center justify-center bg-white/20">
+                        <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 flex items-center justify-center bg-cyan-400/30 text-cyan-200">
                           1
                         </Badge>
                       )}
@@ -349,7 +378,7 @@ const AlertHistory = () => {
                       <Download className="w-4 h-4" />
                       Export
                       {filteredAlerts.length > 0 && (
-                        <Badge variant="secondary" className="ml-1 bg-cyan-500/20">
+                        <Badge variant="secondary" className="ml-1 bg-cyan-500/20 text-cyan-200">
                           {filteredAlerts.length}
                         </Badge>
                       )}
@@ -394,7 +423,7 @@ const AlertHistory = () => {
                           variant={selectedRange === range.label ? "default" : "outline"}
                           className={`h-auto py-4 px-4 flex flex-col items-start justify-start text-left transition-all ${
                             selectedRange === range.label 
-                              ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white ring-2 ring-cyan-400' 
+                              ? range.selectedColor
                               : `${range.color} border-current`
                           }`}
                           onClick={() => handleRangeSelect(range.min, range.max, range.label)}

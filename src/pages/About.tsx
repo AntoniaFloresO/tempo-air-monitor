@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Satellite, Globe, Zap, Target, Award, Users } from 'lucide-react';
+import { Satellite, Globe, Zap, Target, Award, Users, CheckCircle, Wrench, Rocket, Radio } from 'lucide-react';
 import dataVisualization from '@/assets/data-visualization.jpg';
 
 const About = () => {
@@ -13,10 +13,30 @@ const About = () => {
   ];
 
   const timeline = [
-    { year: '2012', title: 'Project Approval', description: 'NASA approves TEMPO mission development' },
-    { year: '2018', title: 'Instrument Complete', description: 'TEMPO spectrometer assembly finished' },
-    { year: '2023', title: 'Launch Success', description: 'Deployed aboard Intelsat 40e satellite' },
-    { year: '2024', title: 'Full Operations', description: 'Continuous air quality monitoring active' },
+    { 
+      year: '2012', 
+      title: 'Project Approval', 
+      description: 'NASA approves TEMPO as part of its Earth Venture Instrument program, aimed at developing innovative space-based Earth observation instruments. The mission is designed to revolutionize air quality monitoring from geostationary orbit.',
+      icon: CheckCircle
+    },
+    { 
+      year: '2018', 
+      title: 'Instrument Complete', 
+      description: 'TEMPO ultraviolet-visible spectrometer assembly completed at the Smithsonian Astrophysical Observatory. NASA engineers finalize the cutting-edge technology capable of measuring atmospheric pollutants with unprecedented precision and temporal resolution.',
+      icon: Wrench
+    },
+    { 
+      year: '2023', 
+      title: 'Launch Success', 
+      description: 'TEMPO successfully deployed aboard the Intelsat 40e commercial communications satellite. NASA achieves a major milestone as the first space-based instrument dedicated to hourly air quality monitoring over North America at high spatial resolution.',
+      icon: Rocket
+    },
+    { 
+      year: '2024', 
+      title: 'Full Operations', 
+      description: 'TEMPO enters full operational phase, providing continuous daytime observations of air quality. NASA distributes data through GES DISC, enabling researchers, forecasters, and policymakers to track pollution patterns, improve air quality forecasts, and protect public health across the continent.',
+      icon: Radio
+    },
   ];
 
   return (
@@ -43,7 +63,7 @@ const About = () => {
                 <br />
                 Monitoring of Pollution
               </h1>
-              <p className="text-xl text-white/70 mb-8">
+              <p className="text-xl text-white/85 mb-8">
                 The first space-based instrument to continuously measure air quality over North America, providing unprecedented insights into pollution patterns and their impacts.
               </p>
             </motion.div>
@@ -73,8 +93,8 @@ const About = () => {
                     className="text-center"
                   >
                     <Icon className={`w-8 h-8 ${colors[index]} mx-auto mb-3`} />
-                    <p className="text-3xl font-bold mb-1 text-white">{stat.value}</p>
-                    <p className="text-sm text-white/70">{stat.label}</p>
+                    <p className="text-3xl font-bold mb-1 text-white drop-shadow-lg">{stat.value}</p>
+                    <p className="text-sm text-white/90">{stat.label}</p>
                   </motion.div>
                 );
               })}
@@ -179,7 +199,7 @@ const About = () => {
                       stiffness: 100,
                       damping: 15
                     }}
-                    className={`relative flex items-center mb-16 last:mb-0 ${
+                    className={`relative flex items-start mb-16 last:mb-0 ${
                       index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                     }`}
                   >
@@ -195,7 +215,7 @@ const About = () => {
                             {item.year}
                           </span>
                           <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/30 transition-colors">
-                            <Satellite className="w-6 h-6 text-cyan-400" />
+                            {item.icon && <item.icon className="w-6 h-6 text-cyan-400" />}
                           </div>
                         </div>
                         <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors text-white">
@@ -215,7 +235,7 @@ const About = () => {
                       </motion.div>
                     </div>
 
-                    {/* Enhanced Dot with Animation */}
+                    {/* Enhanced Dot with Animation - Aligned to top */}
                     <motion.div
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
@@ -225,7 +245,7 @@ const About = () => {
                         type: "spring",
                         stiffness: 200
                       }}
-                      className="absolute left-8 md:left-1/2 z-10"
+                      className="absolute left-8 md:left-1/2 top-12 z-10"
                     >
                       <div className="relative w-6 h-6 -ml-3">
                         {/* Pulsing ring */}
@@ -281,9 +301,27 @@ const About = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { name: 'NASA', role: 'Mission Leadership', icon: Satellite },
-                { name: 'Smithsonian', role: 'Science Operations', icon: Award },
-                { name: 'EPA & Partners', role: 'Data Application', icon: Users },
+                { 
+                  name: 'NASA', 
+                  role: 'Mission Leadership & Funding', 
+                  icon: Satellite,
+                  description: 'NASA leads the TEMPO mission through its Earth Science Division, providing funding, oversight, and technical expertise. The agency manages data distribution through the Goddard Earth Sciences Data and Information Services Center (GES DISC).',
+                  image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png'
+                },
+                { 
+                  name: 'Smithsonian', 
+                  role: 'Instrument Development', 
+                  icon: Award,
+                  description: 'The Smithsonian Astrophysical Observatory designed and built the TEMPO spectrometer instrument. Their team of engineers and scientists operates the instrument and processes raw data into atmospheric measurements.',
+                  image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80'
+                },
+                { 
+                  name: 'EPA & NOAA', 
+                  role: 'Data Application & Forecasting', 
+                  icon: Users,
+                  description: 'The Environmental Protection Agency and National Oceanic and Atmospheric Administration use TEMPO data for air quality forecasting, health alerts, and environmental policy. Multiple research institutions also leverage the data for atmospheric studies.',
+                  image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&q=80'
+                },
               ].map((partner, index) => {
                 const Icon = partner.icon;
                 const colors = ['text-cyan-400', 'text-blue-400', 'text-purple-400'];
@@ -295,13 +333,31 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-slate-900/50 border border-cyan-400/20 rounded-2xl p-8 text-center hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all backdrop-blur-sm"
+                    className="bg-slate-900/50 border border-cyan-400/20 rounded-2xl p-6 hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all backdrop-blur-sm group"
                   >
-                    <div className={`w-16 h-16 ${bgColors[index]} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
-                      <Icon className={`w-12 h-12 ${colors[index]}`} />
+                    {/* Image */}
+                    <div className="relative h-32 mb-4 rounded-xl overflow-hidden bg-slate-800/50">
+                      <img 
+                        src={partner.image} 
+                        alt={partner.name}
+                        className="w-full h-full object-contain p-4"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-white">{partner.name}</h3>
-                    <p className="text-white/70">{partner.role}</p>
+                    
+                    {/* Icon & Title */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`w-12 h-12 ${bgColors[index]} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                        <Icon className={`w-6 h-6 ${colors[index]}`} />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-white">{partner.name}</h3>
+                        <p className="text-sm text-cyan-300/70">{partner.role}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-white/70 text-sm leading-relaxed">{partner.description}</p>
                   </motion.div>
                 );
               })}

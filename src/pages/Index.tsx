@@ -357,14 +357,14 @@ const Index = () => {
           {/* Fade from previous section */}
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-10" />
           <NewsSection />
-          {/* Fade to footer */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-slate-950 pointer-events-none z-10" />
+          {/* Fade to footer - lighter transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-slate-900/30 to-slate-950/80 pointer-events-none z-10" />
         </div>
 
         {/* Footer with fade effect */}
         <div className="relative">
-          {/* Fade from previous section */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-10" />
+          {/* Fade from previous section - lighter */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-slate-900/20 to-transparent pointer-events-none z-10" />
           <Footer />
         </div>
       </div>
