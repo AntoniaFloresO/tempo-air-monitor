@@ -10,10 +10,10 @@ const Navigation = () => {
   const navItems = [
     { name: 'Monitor', path: '/' },
     { name: 'TEMPO Monitor', path: '/tempo-monitor' },
+    { name: 'Alerts', path: '/alerts' },
     { name: 'About TEMPO', path: '/about' },
     { name: 'Data & Science', path: '/data' },
     { name: 'News', path: '/news' },
-    { name: 'Alerts', path: '/alerts' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
