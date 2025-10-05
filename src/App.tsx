@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Data from "./pages/Data";
 import News from "./pages/News";
 import AlertHistory from "./pages/AlertHistory";
+import TempoMonitor from "./pages/TempoMonitor";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/data" element={<Data />} />
           <Route path="/news" element={<News />} />
           <Route path="/alerts" element={<AlertHistory />} />
+          <Route path="/tempo-monitor" element={<TempoMonitor />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
