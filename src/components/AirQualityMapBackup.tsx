@@ -30,7 +30,7 @@ export function AirQualityMap() {
   }, [selectedCity]);
 
   const pointToLayer = (feature: GeoJSON.Feature, latlng: L.LatLngExpression) => {
-    const riskScore = feature.properties?.risk_score;
+    const riskScore = feature.properties.risk_score;
     const color = getRiskColor(riskScore);
     
     return L.circleMarker(latlng, {
@@ -44,7 +44,7 @@ export function AirQualityMap() {
   };
 
   const onEachFeature = (feature: GeoJSON.Feature, layer: L.Layer) => {
-    const props = feature.properties || {};
+    const props = feature.properties;
     const temp = props.temp ? formatTemperature(props.temp) : 'N/A';
     
     const popupContent = `
@@ -219,6 +219,3 @@ export function AirQualityMap() {
     </div>
   );
 }
-
-// Exportación por defecto para compatibilidad
-export default AirQualityMap;

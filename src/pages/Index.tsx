@@ -5,7 +5,7 @@ import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import NewsSection from '@/components/NewsSection';
 import Footer from '@/components/Footer';
-import AirQualityMap from '@/components/AirQualityMap';
+import AirQualityMap from '@/components/AirQualityMapOriginal';
 import PollutantSelector from '@/components/PollutantSelector';
 import RiskPanel from '@/components/RiskPanel';
 import InfoPanel from '@/components/InfoPanel';
