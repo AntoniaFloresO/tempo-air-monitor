@@ -1,5 +1,5 @@
-import { SimpleTempoMonitor } from '@/components/SimpleTempoMonitor';
+import { EnhancedTempoMonitor } from '@/components/EnhancedTempoMonitor';
 
 export default function TempoMonitor() {
-  return <SimpleTempoMonitor />;
+  return <EnhancedTempoMonitor />;
 }

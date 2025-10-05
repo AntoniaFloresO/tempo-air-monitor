@@ -8,7 +8,7 @@ import {
 } from '../types/api';
 import cleanSkyLAApi from './cleanSkyLAApi';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://0.0.0.0:8002/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://backend-nasa-qadb.onrender.com/api';
 
 class ApiError extends Error {
   constructor(message: string, public status?: number) {

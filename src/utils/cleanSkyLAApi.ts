@@ -1,6 +1,6 @@
 import { CleanSkyLAResponse, CleanSkyCell } from '../types/api';
 
-const API_BASE = 'http://0.0.0.0:8002';
+const API_BASE = 'https://backend-nasa-qadb.onrender.com';
 
 class ApiError extends Error {
   constructor(message: string, public status?: number) {
