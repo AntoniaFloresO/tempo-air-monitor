@@ -221,282 +221,298 @@ const AlertHistory = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-950">
       <Navigation />
 
-      {/* Header */}
-      <div className="pt-24 pb-12 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container mx-auto px-4">
+      {/* Header with fade */}
+      <div className="relative">
+        <div className="pt-24 pb-12 bg-gradient-to-b from-blue-950/30 via-slate-950 to-slate-900/40">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-400/30 rounded-full px-4 py-2 mb-4">
+                <AlertTriangle className="w-4 h-4 text-cyan-400" />
+                <span className="text-sm font-medium text-cyan-300">Air Quality Monitoring</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Alert History
+                </span>
+              </h1>
+              <p className="text-lg text-white/70 max-w-2xl">
+                Complete tracking of all air quality alerts detected by TEMPO
+              </p>
+            </motion.div>
+          </div>
+        </div>
+        {/* Fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-slate-950 pointer-events-none z-10" />
+      </div>
+
+      {/* Main Content with fade */}
+      <div className="relative">
+        {/* Fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-10" />
+        <div className="container mx-auto px-4 py-12 bg-slate-950/60">
+          {/* Stats Cards */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Alert History
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Complete tracking of all air quality alerts detected by TEMPO
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Stats Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
-        >
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Total Alerts
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold">{mockAlerts.length}</div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-orange-500" />
-                Active Alerts
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-orange-600">{activeAlertsCount}</div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500" />
-                Resolved Alerts
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-green-600">{resolvedAlertsCount}</div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        {/* Filters and Actions */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-8 space-y-4"
-        >
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-                <Tabs value={filter} onValueChange={(v) => setFilter(v as any)} className="w-full sm:w-auto">
-                  <TabsList>
-                    <TabsTrigger value="all">
-                      All ({mockAlerts.length})
-                    </TabsTrigger>
-                    <TabsTrigger value="active">
-                      Active ({activeAlertsCount})
-                    </TabsTrigger>
-                    <TabsTrigger value="resolved">
-                      Resolved ({resolvedAlertsCount})
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-
-                <div className="flex gap-2 w-full sm:w-auto">
-                  <Button 
-                    variant={showFilters ? "default" : "outline"} 
-                    size="sm" 
-                    className="flex items-center gap-2"
-                    onClick={() => setShowFilters(!showFilters)}
-                  >
-                    <Filter className="w-4 h-4" />
-                    Filter AQI
-                    {isFilterActive && (
-                      <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 flex items-center justify-center">
-                        1
-                      </Badge>
-                    )}
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="flex items-center gap-2"
-                    onClick={exportToCSV}
-                    disabled={filteredAlerts.length === 0}
-                  >
-                    <Download className="w-4 h-4" />
-                    Export
-                    {filteredAlerts.length > 0 && (
-                      <Badge variant="secondary" className="ml-1">
-                        {filteredAlerts.length}
-                      </Badge>
-                    )}
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* AQI Range Filter */}
-          {showFilters && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">Filter by AQI Range</CardTitle>
-                    {isFilterActive && (
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        onClick={handleResetFilters}
-                        className="flex items-center gap-2"
-                      >
-                        <X className="w-4 h-4" />
-                        Reset
-                      </Button>
-                    )}
-                  </div>
-                  <CardDescription>
-                    Select an Air Quality Index range to filter alerts
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {aqiRanges.map((range) => (
-                      <Button
-                        key={range.label}
-                        variant={selectedRange === range.label ? "default" : "outline"}
-                        className={`h-auto py-4 px-4 flex flex-col items-start justify-start text-left transition-all ${
-                          selectedRange === range.label 
-                            ? 'ring-2 ring-primary' 
-                            : range.color
-                        }`}
-                        onClick={() => handleRangeSelect(range.min, range.max, range.label)}
-                      >
-                        <span className="font-bold text-lg mb-1">
-                          {range.min}-{range.max}
-                        </span>
-                        <span className="text-xs font-normal opacity-80">
-                          {range.label.split('(')[1]?.replace(')', '') || range.label}
-                        </span>
-                      </Button>
-                    ))}
-                  </div>
-                  
-                  {isFilterActive && (
-                    <div className="mt-4 p-3 bg-muted rounded-lg">
-                      <p className="text-sm text-muted-foreground">
-                        Showing alerts with AQI between <span className="font-semibold text-foreground">{aqiRange.min}</span> and <span className="font-semibold text-foreground">{aqiRange.max}</span>
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        {filteredAlerts.length} alert{filteredAlerts.length !== 1 ? 's' : ''} found
-                      </p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-        </motion.div>
-
-        {/* Alerts List */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="space-y-4"
-        >
-          {filteredAlerts.map((alert, index) => (
-            <motion.div
-              key={alert.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-            >
-              <Card className={`hover:shadow-md transition-shadow ${!alert.resolved ? 'border-l-4 border-l-orange-500' : ''}`}>
-                <CardHeader>
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-start gap-3 mb-2">
-                        <div className="mt-1">
-                          {alert.resolved ? (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
-                          ) : (
-                            <AlertTriangle className="w-5 h-5 text-orange-500" />
-                          )}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 flex-wrap mb-2">
-                            <CardTitle className="text-lg">{alert.location}</CardTitle>
-                            <Badge variant="outline" className={getRiskColor(alert.riskLevel)}>
-                              {getRiskLabel(alert.riskLevel)}
-                            </Badge>
-                            {!alert.resolved && (
-                              <Badge variant="destructive" className="text-xs">
-                                ACTIVE
-                              </Badge>
-                            )}
-                          </div>
-                          <CardDescription className="text-base mb-3">
-                            {alert.message}
-                          </CardDescription>
-                          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                            <div className="flex items-center gap-1">
-                              <Clock className="w-4 h-4" />
-                              {formatDate(alert.timestamp)}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              {alert.coords[0].toFixed(4)}, {alert.coords[1].toFixed(4)}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col items-end gap-2">
-                      <div className="text-right">
-                        <div className="text-xs text-muted-foreground mb-1">
-                          Air Quality Index
-                        </div>
-                        <div className={`text-3xl font-bold ${getAQIColor(alert.aqi)}`}>
-                          {alert.aqi}
-                        </div>
-                      </div>
-                      <Badge variant="secondary" className="text-xs">
-                        {alert.pollutant}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            </motion.div>
-          ))}
-
-          {filteredAlerts.length === 0 && (
-            <Card>
-              <CardContent className="py-12 text-center">
-                <AlertTriangle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-lg text-muted-foreground">
-                  No alerts found with the selected filters
-                </p>
+            <Card className="bg-slate-900/50 border-cyan-400/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-white/70">
+                  Total Alerts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-white">{mockAlerts.length}</div>
               </CardContent>
             </Card>
-          )}
-        </motion.div>
+
+            <Card className="bg-slate-900/50 border-orange-400/20 backdrop-blur-sm hover:border-orange-400/40 transition-all">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-white/70 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-orange-400" />
+                  Active Alerts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-orange-400">{activeAlertsCount}</div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900/50 border-green-400/20 backdrop-blur-sm hover:border-green-400/40 transition-all">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-white/70 flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  Resolved Alerts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-green-400">{resolvedAlertsCount}</div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Filters and Actions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8 space-y-4"
+          >
+            <Card className="bg-slate-900/50 border-cyan-400/20 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                  <Tabs value={filter} onValueChange={(v) => setFilter(v as any)} className="w-full sm:w-auto">
+                    <TabsList className="bg-slate-800/50 border border-cyan-400/20">
+                      <TabsTrigger value="all" className="data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-300">
+                        All ({mockAlerts.length})
+                      </TabsTrigger>
+                      <TabsTrigger value="active" className="data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-300">
+                        Active ({activeAlertsCount})
+                      </TabsTrigger>
+                      <TabsTrigger value="resolved" className="data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-300">
+                        Resolved ({resolvedAlertsCount})
+                      </TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+
+                  <div className="flex gap-2 w-full sm:w-auto">
+                    <Button 
+                      variant={showFilters ? "default" : "outline"} 
+                      size="sm" 
+                      className={showFilters ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400" : "border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/10"}
+                      onClick={() => setShowFilters(!showFilters)}
+                    >
+                      <Filter className="w-4 h-4" />
+                      Filter AQI
+                      {isFilterActive && (
+                        <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 flex items-center justify-center bg-white/20">
+                          1
+                        </Badge>
+                      )}
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/10 flex items-center gap-2"
+                      onClick={exportToCSV}
+                      disabled={filteredAlerts.length === 0}
+                    >
+                      <Download className="w-4 h-4" />
+                      Export
+                      {filteredAlerts.length > 0 && (
+                        <Badge variant="secondary" className="ml-1 bg-cyan-500/20">
+                          {filteredAlerts.length}
+                        </Badge>
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* AQI Range Filter */}
+            {showFilters && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+              >
+                <Card className="bg-slate-900/50 border-cyan-400/20 backdrop-blur-sm">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-lg text-white">Filter by AQI Range</CardTitle>
+                      {isFilterActive && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={handleResetFilters}
+                          className="flex items-center gap-2 text-cyan-300 hover:text-cyan-200 hover:bg-cyan-500/10"
+                        >
+                          <X className="w-4 h-4" />
+                          Reset
+                        </Button>
+                      )}
+                    </div>
+                    <CardDescription className="text-white/60">
+                      Select an Air Quality Index range to filter alerts
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {aqiRanges.map((range) => (
+                        <Button
+                          key={range.label}
+                          variant={selectedRange === range.label ? "default" : "outline"}
+                          className={`h-auto py-4 px-4 flex flex-col items-start justify-start text-left transition-all ${
+                            selectedRange === range.label 
+                              ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white ring-2 ring-cyan-400' 
+                              : `${range.color} border-current`
+                          }`}
+                          onClick={() => handleRangeSelect(range.min, range.max, range.label)}
+                        >
+                          <span className="font-bold text-lg mb-1">
+                            {range.min}-{range.max}
+                          </span>
+                          <span className="text-xs font-normal opacity-80">
+                            {range.label.split('(')[1]?.replace(')', '') || range.label}
+                          </span>
+                        </Button>
+                      ))}
+                    </div>
+                    
+                    {isFilterActive && (
+                      <div className="mt-4 p-3 bg-slate-800/50 border border-cyan-400/20 rounded-lg">
+                        <p className="text-sm text-white/70">
+                          Showing alerts with AQI between <span className="font-semibold text-cyan-300">{aqiRange.min}</span> and <span className="font-semibold text-cyan-300">{aqiRange.max}</span>
+                        </p>
+                        <p className="text-xs text-white/60 mt-1">
+                          {filteredAlerts.length} alert{filteredAlerts.length !== 1 ? 's' : ''} found
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+          </motion.div>
+
+          {/* Alerts List */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="space-y-4"
+          >
+            {filteredAlerts.map((alert, index) => (
+              <motion.div
+                key={alert.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+              >
+                <Card className={`bg-slate-900/50 border-cyan-400/20 backdrop-blur-sm hover:shadow-lg hover:shadow-cyan-500/10 hover:border-cyan-400/40 transition-all ${!alert.resolved ? 'border-l-4 border-l-orange-400' : ''}`}>
+                  <CardHeader>
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-start gap-3 mb-2">
+                          <div className="mt-1">
+                            {alert.resolved ? (
+                              <CheckCircle className="w-5 h-5 text-green-400" />
+                            ) : (
+                              <AlertTriangle className="w-5 h-5 text-orange-400" />
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              <CardTitle className="text-lg text-white">{alert.location}</CardTitle>
+                              <Badge variant="outline" className={getRiskColor(alert.riskLevel)}>
+                                {getRiskLabel(alert.riskLevel)}
+                              </Badge>
+                              {!alert.resolved && (
+                                <Badge variant="destructive" className="text-xs bg-orange-500/20 text-orange-300 border-orange-400/30">
+                                  ACTIVE
+                                </Badge>
+                              )}
+                            </div>
+                            <CardDescription className="text-base mb-3 text-white/70">
+                              {alert.message}
+                            </CardDescription>
+                            <div className="flex flex-wrap gap-4 text-sm text-white/60">
+                              <div className="flex items-center gap-1">
+                                <Clock className="w-4 h-4" />
+                                {formatDate(alert.timestamp)}
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-4 h-4" />
+                                {alert.coords[0].toFixed(4)}, {alert.coords[1].toFixed(4)}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col items-end gap-2">
+                        <div className="text-right">
+                          <div className="text-xs text-white/60 mb-1">
+                            Air Quality Index
+                          </div>
+                          <div className={`text-3xl font-bold ${getAQIColor(alert.aqi)}`}>
+                            {alert.aqi}
+                          </div>
+                        </div>
+                        <Badge variant="secondary" className="text-xs bg-cyan-500/20 text-cyan-300 border-cyan-400/30">
+                          {alert.pollutant}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+            ))}
+
+            {filteredAlerts.length === 0 && (
+              <Card className="bg-slate-900/50 border-cyan-400/20 backdrop-blur-sm">
+                <CardContent className="py-12 text-center">
+                  <AlertTriangle className="w-12 h-12 text-white/40 mx-auto mb-4" />
+                  <p className="text-lg text-white/70">
+                    No alerts found with the selected filters
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </motion.div>
+        </div>
+        {/* Fade to footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-slate-950 pointer-events-none z-10" />
       </div>
 
       <Footer />

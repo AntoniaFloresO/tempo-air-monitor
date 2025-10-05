@@ -74,9 +74,13 @@ const Data = () => {
                 <span className="text-sm font-medium text-cyan-300">Data & Science</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-                Access High-Resolution Air Quality Data
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Access High-Resolution
+                </span>
+                <br />
+                Air Quality Data
               </h1>
-              <p className="text-xl text-white/90 font-light">
+              <p className="text-xl text-white/70 font-light">
                 Download TEMPO satellite data, access our API, and explore comprehensive air quality datasets for research and applications.
               </p>
             </motion.div>

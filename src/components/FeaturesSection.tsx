@@ -51,7 +51,7 @@ const FeaturesSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-slate-950/20 via-background/60 to-slate-900/40 backdrop-blur-sm">
+    <section className="py-20 bg-gradient-to-b from-slate-950/60 via-slate-900/40 to-slate-950/60 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -68,7 +68,7 @@ const FeaturesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-blue-200/80"
+            className="text-lg text-white/70"
           >
             TEMPO is the first space-based instrument to monitor air pollutants hourly during daytime across North America
           </motion.p>

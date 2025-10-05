@@ -73,9 +73,11 @@ const News = () => {
                 <span className="text-sm font-medium text-cyan-300">News & Updates</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-                Latest from TEMPO Mission
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Latest from TEMPO Mission
+                </span>
               </h1>
-              <p className="text-xl text-white/90 font-light">
+              <p className="text-xl text-white/70 font-light">
                 Stay informed about new discoveries, data releases, and partnerships advancing air quality science
               </p>
             </motion.div>
